@@ -25,7 +25,7 @@ public class TurretController {
             throw new IllegalArgumentException("Tilt out of 0..180 range (" + request.getTilt() + ")");
         }
 
-        boolean sent = arduino.ControlTurret(request.getPan(), request.getTilt(), request.isFire());
+        boolean sent = arduino.controlTurret(request.getPan(), request.getTilt(), request.isFire());
         if (!sent) {
             throw new RuntimeException("Command not sent :(");
         }

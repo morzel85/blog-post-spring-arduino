@@ -26,7 +26,7 @@ public class ArduinoConnection {
 
 
     @PostConstruct
-    public void Connect() {
+    public void connect() {
         log.info("ArduinoConnection PostConstruct callback: connecting to Arduino...");
 
         serial = new NRSerialPort(portName, baudRate);
@@ -38,7 +38,7 @@ public class ArduinoConnection {
     }
 
     @PreDestroy
-    public void Disconnect() {
+    public void disconnect() {
         log.info("ArduinoConnection PreDestroy callback: disconnecting from Arduino...");
 
         if (serial != null && serial.isConnected()) {
@@ -50,7 +50,7 @@ public class ArduinoConnection {
         }
     }
 
-    public boolean ControlTurret(int pan, int tilt, boolean fire){
+    public boolean controlTurret(int pan, int tilt, boolean fire){
         try {
             // Actual values sent to Arduino will be in proper unsigned byte range (0..255)
             byte[] message = new byte[]{(byte) pan, (byte) tilt, (byte) (fire ? 1 : 0), (byte) MESSAGE_SEPARATOR};
